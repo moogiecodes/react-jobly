@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
  *  IF SEARCHING WITH NO MATCH, no feedback to user, just shows all companies
  */
 
-function SearchBar({ searchCompanies }) {
+function SearchBar({ searchCompanies, searchJobs, company }) {
   const history = useHistory();
   const INITIAL_STATE = {
     searchInput: ""
@@ -23,14 +23,22 @@ function SearchBar({ searchCompanies }) {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if(company){
     if (searchBarData.searchInput.length > 0) {
       searchCompanies(searchBarData);
-      console.log("SEARCH BAR DATA IS...", searchBarData);
       setSearchBarData(INITIAL_STATE);
       history.push('/companies');
     }
     searchCompanies(searchBarData);
+  } else { 
+    if (searchBarData.searchInput.length > 0) {
+    searchJobs(searchBarData);
+    setSearchBarData(INITIAL_STATE);
+    history.push('/jobs');
   }
+  searchJobs(searchBarData);
+}
+}
 
 
   return (

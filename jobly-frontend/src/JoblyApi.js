@@ -34,12 +34,17 @@ class JoblyApi {
     return res.company;
   }
 
-  static async search(searchTerm) {
+  static async searchCompanies(searchTerm) {
     let res = await this.request(`companies/?search=${searchTerm}`);
     // console.log("IN JOBLYAPI HELPER....RES IS....", res);
     return res.companies;
   }
 
+  static async searchJobs(searchTerm) {
+    let res = await this.request(`jobs/?search=${searchTerm}`);
+    // console.log("IN JOBLYAPI HELPER....RES IS....", res);
+    return res.jobs;
+  }
 
 }
 
