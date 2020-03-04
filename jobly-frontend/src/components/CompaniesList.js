@@ -7,7 +7,6 @@ import CompanyCard from './CompanyCard';
 function CompaniesList({ filteredCompanies }) {
   const [companies, setCompanies] = useState([]);
 
-  console.log("IN COMPANIES LIST, FILTERED COMPANIES IS...", filteredCompanies);
   /* At mount: load deck from API into state. */
   useEffect(() => {
     let reqBody = {
