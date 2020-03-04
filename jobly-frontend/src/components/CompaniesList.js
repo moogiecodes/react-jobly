@@ -1,8 +1,11 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-// import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import '../styles/CompaniesList.css';
 // import { v4 as uuid } from 'uuid';
-import JoblyApi from '../JoblyApi'
+import JoblyApi from '../JoblyApi';
+import CompanyCard from './CompanyCard';
+import SearchBar from './SearchBar';
 
 function CompaniesList() {
   const [companies, setCompanies] = useState([]);
@@ -19,16 +22,15 @@ function CompaniesList() {
     getData();
   }, [setCompanies]);
 
-  // console.log(companies.companies);
+  console.log(companies.companies);
 
   // ** ADD COMPANYCARD COMPONENT WHEN WORKING
   return (
     <div>
-      <ul>
+    {/* <SearchBar />   */}
         {(companies.length === 0) ? <h2>Companies Directory</h2> :
-          companies.map(c => <li key={c.handle}>{c.name}</li>)
+          companies.map(c => <CompanyCard name={c.name} description={c.description} handle={c.handle} />)
         }
-      </ul>
     </div>
   );
 }
