@@ -3,8 +3,6 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Homepage from './components/Homepage';
 import CompanyDetails from './components/CompanyDetails';
 import CardList from './components/CardList';
-import SearchBar from './components/SearchBar';
-import CompaniesList from './components/CompaniesList';
 
 function Routes() {
 
@@ -15,8 +13,6 @@ function Routes() {
       </Route>
       <Route exact path="/companies">
         <CardList />
-        <SearchBar />
-        <CompaniesList />
       </Route>
       <Route exact path="/companies/:handle">
         <CompanyDetails />

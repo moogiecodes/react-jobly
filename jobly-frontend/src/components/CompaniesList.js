@@ -1,14 +1,13 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { NavLink } from "react-router-dom";
 import '../styles/CompaniesList.css';
-// import { v4 as uuid } from 'uuid';
 import JoblyApi from '../JoblyApi';
 import CompanyCard from './CompanyCard';
 
-function CompaniesList() {
+function CompaniesList({ filteredCompanies }) {
   const [companies, setCompanies] = useState([]);
 
+  console.log("IN COMPANIES LIST, FILTERED COMPANIES IS...", filteredCompanies);
   /* At mount: load deck from API into state. */
   useEffect(() => {
     let reqBody = {
@@ -21,16 +20,15 @@ function CompaniesList() {
     getData();
   }, [setCompanies]);
 
-  // console.log(companies.companies);
 
-  // ** ADD COMPANYCARD COMPONENT WHEN WORKING
   return (
     <div>
-      {(companies.length === 0) ? <h2>Companies Directory</h2> :
-        companies.map(c => <CompanyCard key={c.handle} name={c.name} description={c.description} handle={c.handle} />)
+      {(filteredCompanies.length > 0) ?
+        filteredCompanies.map(c => <CompanyCard key={c.handle} name={c.name} description={c.description} handle={c.handle} />) : companies.map(c => <CompanyCard key={c.handle} name={c.name} description={c.description} handle={c.handle} />)
       }
     </div>
   );
 }
+
 
 export default CompaniesList;
