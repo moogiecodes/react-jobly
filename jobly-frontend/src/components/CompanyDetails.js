@@ -1,37 +1,35 @@
-import React, {useEffect, useState } from 'react';
-import JobList from './JobList';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import JoblyApi from '../JoblyApi';
+import JobCard from './JobCard';
 
 function CompanyDetails() {
   const [company, setCompany] = useState(null);
   const { handle } = useParams();
 
-console.log(useParams());
+  console.log(useParams());
 
-useEffect(() => {
-  let reqBody = {
-    "_token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmciLCJpc19hZG1pbiI6ZmFsc2UsImlhdCI6MTU1MzcwMzE1M30.COmFETEsTxN_VfIlgIKw0bYJLkvbRQNgO1XCSE8NZ0U'
-  }
-  async function getData() {
-    let companyData = await JoblyApi.getCompany(`${handle}`);
-    setCompany(companyData);
-    console.log(companyData);
-  }
-  getData();
-}, [setCompany, handle]);
+  useEffect(() => {
+    async function getData() {
+      let companyData = await JoblyApi.getCompany(`${handle}`);
+      setCompany(companyData);
+      console.log(companyData);
+    }
+    getData();
+  }, [setCompany, handle]);
 
-return (
-  <div>
-    {company ? 
+  return (
     <div>
-    <h2>{company.name}</h2>
-    <p>{company.description}</p>
-    <p>Number of Employees: {company.num_employees}</p> 
+      {company ?
+        <div>
+          <h2>{company.name}</h2>
+          <p>{company.description}</p>
+          <p>Number of Employees: {company.num_employees}</p>
+          {company.jobs.map(j => <JobCard key={j.id} title={j.title} salary={j.salary} equity={j.equity} />)}
+        </div>
+        : <h1>Company Details...</h1>}
     </div>
-    : <h1>Company Details...</h1>}
-  </div>
-)
+  )
 
 }
 

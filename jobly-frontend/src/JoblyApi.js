@@ -8,6 +8,7 @@ class JoblyApi {
       "COmFETEsTxN_VfIlgIKw0bYJLkvbRQNgO1XCSE8NZ0U");
     // use local storage?
 
+
     console.debug("API Call:", endpoint, paramsOrData, verb);
 
     try {
@@ -32,6 +33,14 @@ class JoblyApi {
     let res = await this.request(`companies/${handle}`);
     return res.company;
   }
+
+  static async search(searchTerm) {
+    let res = await this.request(`companies/?search=${searchTerm}`);
+    // console.log("IN JOBLYAPI HELPER....RES IS....", res);
+    return res.companies;
+  }
+
+
 }
 
 export default JoblyApi;

@@ -5,7 +5,6 @@ import '../styles/CompaniesList.css';
 // import { v4 as uuid } from 'uuid';
 import JoblyApi from '../JoblyApi';
 import CompanyCard from './CompanyCard';
-import SearchBar from './SearchBar';
 
 function CompaniesList() {
   const [companies, setCompanies] = useState([]);
@@ -22,15 +21,14 @@ function CompaniesList() {
     getData();
   }, [setCompanies]);
 
-  console.log(companies.companies);
+  // console.log(companies.companies);
 
   // ** ADD COMPANYCARD COMPONENT WHEN WORKING
   return (
     <div>
-    {/* <SearchBar />   */}
-        {(companies.length === 0) ? <h2>Companies Directory</h2> :
-          companies.map(c => <CompanyCard name={c.name} description={c.description} handle={c.handle} />)
-        }
+      {(companies.length === 0) ? <h2>Companies Directory</h2> :
+        companies.map(c => <CompanyCard key={c.handle} name={c.name} description={c.description} handle={c.handle} />)
+      }
     </div>
   );
 }

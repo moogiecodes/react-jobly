@@ -1,8 +1,10 @@
 import React from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
 import Homepage from './components/Homepage';
-import CompaniesList from './components/CompaniesList';
 import CompanyDetails from './components/CompanyDetails';
+import CardList from './components/CardList';
+import SearchBar from './components/SearchBar';
+import CompaniesList from './components/CompaniesList';
 
 function Routes() {
 
@@ -12,8 +14,8 @@ function Routes() {
         <Homepage />
       </Route>
       <Route exact path="/companies">
-        companies
-        {/* <SearchBar /> */}
+        <CardList />
+        <SearchBar />
         <CompaniesList />
       </Route>
       <Route exact path="/companies/:handle">
@@ -22,7 +24,7 @@ function Routes() {
       </Route>
       <Route exact path="/jobs">
         jobs
-        {/* <JobList /> */}
+        {/* <CardList /> */}
       </Route>
       <Route exact path="/login">
         login
