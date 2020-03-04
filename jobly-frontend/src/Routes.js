@@ -12,14 +12,14 @@ function Routes() {
         <Homepage />
       </Route>
       <Route exact path="/companies">
-        <CardList company={true}/>
+        <CardList listType="company"/>
       </Route>
       <Route exact path="/companies/:handle">
         <CompanyDetails />
         {/* <JobList /> */}
       </Route>
       <Route exact path="/jobs">
-        <CardList company={false}/>
+        <CardList listType="job"/>
         {/* <CardList /> */}
       </Route>
       <Route exact path="/login">

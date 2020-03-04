@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 import CompaniesList from './CompaniesList';
 import JobsList from './JobsList';
 
-function CardList({company}) {
+function CardList({listType}) {
   const [filteredCompanies, setFilteredCompanies] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
 
@@ -38,12 +38,16 @@ function CardList({company}) {
 
   return (
     <div>
-      <SearchBar searchCompanies={searchCompanies} searchJobs={searchJobs} company={company}/>
+      <SearchBar searchCompanies={searchCompanies} searchJobs={searchJobs} listType={listType}/>
 
-      {company ?
+      {listType === "company" ? 
       <CompaniesList filteredCompanies={filteredCompanies} />
-      : <JobsList filteredJobs={filteredJobs} />
-      }
+      : null
+  }
+      {listType === "job" ? 
+      <JobsList filteredJobs={filteredJobs} />
+      : null
+    }
       </div>
   );
 }
