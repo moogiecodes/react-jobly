@@ -1,10 +1,7 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
-// import { v4 as uuid } from 'uuid';
 
-function Homepage() {
-  const userLoggedIn = true; // request from backend??
-
+function Homepage({ userLoggedIn }) {
 
   return (
     <div>

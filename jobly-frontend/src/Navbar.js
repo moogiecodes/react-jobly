@@ -1,8 +1,7 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 
-function Navbar() {
-  const userLoggedIn = true; // write logic for this
+function Navbar({ userLoggedIn }) {
 
   if (userLoggedIn) {
     return (

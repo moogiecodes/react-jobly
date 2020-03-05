@@ -9,11 +9,8 @@ function CompaniesList({ filteredCompanies }) {
 
   /* At mount: load deck from API into state. */
   useEffect(() => {
-    let reqBody = {
-      "_token": 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RpbmciLCJpc19hZG1pbiI6ZmFsc2UsImlhdCI6MTU1MzcwMzE1M30.COmFETEsTxN_VfIlgIKw0bYJLkvbRQNgO1XCSE8NZ0U'
-    }
     async function getData() {
-      let companyData = await JoblyApi.request('companies', reqBody, 'get');
+      let companyData = await JoblyApi.request('companies');
       setCompanies(companyData.companies);
     }
     getData();
