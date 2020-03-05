@@ -13,7 +13,7 @@ function App() {
       setUserLoggedIn(true)
     }
     else setUserLoggedIn(false);
-  }, [setUserLoggedIn]);
+  }, [userLoggedIn, setUserLoggedIn]);
 
 
   return (

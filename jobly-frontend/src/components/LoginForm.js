@@ -8,16 +8,16 @@ function LoginForm() {
   const [loginOrRegister, setLoginOrRegister] = useState("login")
 
   const loginData = {
-    username: "",
-    password: ""
+    login_username: "",
+    login_password: ""
   };
 
   const registerData = {
-    username: "",
-    password: "",
-    first_name: "",
-    last_name: "",
-    email: ""
+    register_username: "",
+    register_password: "",
+    register_first_name: "",
+    register_last_name: "",
+    register_email: ""
   };
 
   const [formData, setFormData] = useState(loginData);
@@ -30,16 +30,26 @@ function LoginForm() {
     });
   }
 
-  const handleSubmit = evt => {
+console.log(formData)
+
+ const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (loginOrRegister === "login") {
-      JoblyApi.login(formData.username, formData.password);
+       await JoblyApi.login(formData.login_username, formData.login_password);
       setFormData(loginData);
       history.push('/jobs');
     }
     else if (loginOrRegister === "register") {
       // make JoblyApi.register method
-
+      await JoblyApi.register(
+        formData.register_username, 
+        formData.register_password, 
+        formData.register_first_name, 
+        formData.register_last_name, 
+        formData.register_email);
+        console.log(formData);
+      setFormData(registerData);
+      history.push('/jobs');
     }
   }
 
@@ -58,52 +68,52 @@ function LoginForm() {
       <button onClick={registerView}>Register</button>
       {loginOrRegister === "login" ?
         <form onSubmit={handleSubmit} className="LoginForm">
-          <label htmlFor="username" >Username</label>
+          <label htmlFor="login_username" >Username</label>
           <input
-            name="username"
-            id="username"
-            value={formData.username}
+            name="login_username"
+            id="login_username"
+            value={formData.login_username}
             onChange={handleChange}></input>
-          <label htmlFor="passoword">Password</label>
+          <label htmlFor="login_password">Password</label>
           <input
-            name="password"
-            id="password"
-            value={formData.password}
+            name="login_password"
+            id="login_password"
+            value={formData.login_password}
             onChange={handleChange}></input>
           <button>Submit</button>
         </form>
         : null}
       {loginOrRegister === "register" ?
         <form onSubmit={handleSubmit} className="RegisterForm">
-          <label htmlFor="username" >Username</label>
+          <label htmlFor="register_username" >Username</label>
           <input
-            name="username"
-            id="username"
-            value={formData.username}
+            name="register_username"
+            id="register_username"
+            value={formData.register_username}
             onChange={handleChange}></input>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="register_password">Password</label>
           <input
-            name="password"
-            id="password"
-            value={formData.password}
+            name="register_password"
+            id="register_password"
+            value={formData.register_password}
             onChange={handleChange}></input>
-          <label htmlFor="first_name">First Name</label>
+          <label htmlFor="register_first_name">First Name</label>
           <input
-            name="first_name"
-            id="first_name"
-            value={formData.first_name}
+            name="register_first_name"
+            id="register_first_name"
+            value={formData.register_first_name}
             onChange={handleChange}></input>
-          <label htmlFor="last_name">Last Name</label>
+          <label htmlFor="register_last_name">Last Name</label>
           <input
-            name="last_name"
-            id="last_name"
-            value={formData.last_name}
+            name="register_last_name"
+            id="register_last_name"
+            value={formData.register_last_name}
             onChange={handleChange}></input>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="register_email">Email</label>
           <input
-            name="email"
-            id="email"
-            value={formData.email}
+            name="register_email"
+            id="register_email"
+            value={formData.register_email}
             onChange={handleChange}></input>
           <button>Submit</button>
         </form>

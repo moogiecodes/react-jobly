@@ -3,7 +3,8 @@ import axios from 'axios';
 class JoblyApi {
   static async request(endpoint, paramsOrData = {}, verb = "get") {
     paramsOrData._token = localStorage.getItem('_token');
-    console.debug("API Call:", endpoint, paramsOrData, verb);
+    console.log("PARAMS DATA ONLY", paramsOrData);
+    console.log("API Call:", endpoint, paramsOrData, verb);
 
     try {
       return (await axios({
@@ -53,6 +54,19 @@ class JoblyApi {
   }
 
   // register method needs to be made 
+  static async register(username, password, firstname, lastname, email) {
+    console.log("username", username, "password", password, "firstname", firstname, "lastname", lastname, "email", email );
+    let reqbody = {
+      username,
+      password,
+      first_name : firstname,
+      last_name : lastname,
+      email
+    }
+    let res = await this.request('users', reqbody, 'post');
+    let token = res.token;
+    localStorage.setItem('_token', token);
+  }
 }
 
 export default JoblyApi;
