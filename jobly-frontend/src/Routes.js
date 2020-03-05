@@ -4,6 +4,7 @@ import Homepage from './components/Homepage';
 import CompanyDetails from './components/CompanyDetails';
 import CompanyCardList from './components/CompanyCardList';
 import JobCardList from './components/JobCardList';
+import LoginForm from './components/LoginForm';
 
 function Routes() {
 
@@ -24,7 +25,7 @@ function Routes() {
         {/* <CardList /> */}
       </Route>
       <Route exact path="/login">
-        login
+      <LoginForm />
         {/* <LoginForm /> */}
       </Route>
       <Route exact path="/profile">
