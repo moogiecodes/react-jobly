@@ -20,7 +20,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar userLoggedIn={userLoggedIn} />
-        <Routes />
+        <Routes userLoggedIn={userLoggedIn} />
       </BrowserRouter>
     </div>
   );

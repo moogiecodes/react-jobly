@@ -6,26 +6,26 @@ import CompanyCardList from './components/CompanyCardList';
 import JobCardList from './components/JobCardList';
 import LoginForm from './components/LoginForm';
 
-function Routes() {
+function Routes({ userLoggedIn }) {
 
   return (
     <Switch>
       <Route exact path="/">
-        <Homepage />
+        <Homepage userLoggedIn={userLoggedIn} />
       </Route>
       <Route exact path="/companies">
-        <CompanyCardList listType="company"/>
+        <CompanyCardList listType="company" />
       </Route>
       <Route exact path="/companies/:handle">
         <CompanyDetails />
         {/* <JobList /> */}
       </Route>
       <Route exact path="/jobs">
-        <JobCardList listType="job"/>
+        <JobCardList listType="job" />
         {/* <CardList /> */}
       </Route>
       <Route exact path="/login">
-      <LoginForm />
+        <LoginForm />
         {/* <LoginForm /> */}
       </Route>
       <Route exact path="/profile">

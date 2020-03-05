@@ -7,8 +7,6 @@ import JobCard from './JobCard';
 function JobsList({ filteredJobs }) {
   const [jobs, setJobs] = useState([]);
 
-  // console.log("IN JOBS LIST, FILTERED JOBS IS...", filteredJobs);
-  /* At mount: load deck from API into state. */
   useEffect(() => {
     async function getData() {
       let jobData = await JoblyApi.request('jobs');
