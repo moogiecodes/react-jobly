@@ -48,7 +48,7 @@ function LoginForm({ setUserLoggedIn }) {
         formData.register_first_name, 
         formData.register_last_name, 
         formData.register_email);
-       
+        setUserLoggedIn(true);
       setFormData(registerData);
       history.push('/jobs');
     }

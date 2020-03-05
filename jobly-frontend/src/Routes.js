@@ -18,19 +18,14 @@ function Routes({ userLoggedIn, setUserLoggedIn }) {
       </Route>
       <Route exact path="/companies/:handle">
         <CompanyDetails />
-        {/* <JobList /> */}
       </Route>
       <Route exact path="/jobs">
         <JobCardList listType="job" />
-        {/* <CardList /> */}
       </Route>
       <Route exact path="/login">
         <LoginForm setUserLoggedIn={setUserLoggedIn} />
-        {/* <LoginForm /> */}
       </Route>
       <Route exact path="/profile">
-        edit profile
-        {/* <ProfileForm /> */}
       </Route>
       <Redirect to='/' />
     </Switch>
