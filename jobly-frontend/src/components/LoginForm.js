@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import JoblyApi from '../JoblyApi';
 import { useHistory } from 'react-router-dom';
 
-function LoginForm({ setUserLoggedIn }) {
+function LoginForm({ setUserLoggedIn, setUsername }) {
 
   const history = useHistory();
   const [loginOrRegister, setLoginOrRegister] = useState("login")
@@ -31,24 +31,26 @@ function LoginForm({ setUserLoggedIn }) {
   }
 
 
-
- const handleSubmit = async (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (loginOrRegister === "login") {
-       await JoblyApi.login(formData.login_username, formData.login_password);
+      await JoblyApi.login(formData.login_username, formData.login_password);
       setFormData(loginData);
       setUserLoggedIn(true);
+      // console.log("in handle submit for login");
+      setUsername(formData.login_username);
+
       history.push('/jobs');
     }
     else if (loginOrRegister === "register") {
       // make JoblyApi.register method
       await JoblyApi.register(
-        formData.register_username, 
-        formData.register_password, 
-        formData.register_first_name, 
-        formData.register_last_name, 
+        formData.register_username,
+        formData.register_password,
+        formData.register_first_name,
+        formData.register_last_name,
         formData.register_email);
-        setUserLoggedIn(true);
+      setUserLoggedIn(true);
       setFormData(registerData);
       history.push('/jobs');
     }

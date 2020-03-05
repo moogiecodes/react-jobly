@@ -4,24 +4,34 @@ import './App.css';
 import { BrowserRouter } from "react-router-dom";
 import Routes from './Routes'
 import Navbar from './Navbar'
+import JoblyApi from './JoblyApi';
 
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
+
     if (localStorage._token) {
       setUserLoggedIn(true)
+
+      const getUser = async () => {
+        let user = await JoblyApi.getUser(username);
+        setCurrentUser(user);
+      }
+      getUser();
     }
     else setUserLoggedIn(false);
-    console.log("Inside useEffect, userLoggedIn is", userLoggedIn);
-  }, [setUserLoggedIn]);
+
+  }, [userLoggedIn, setUserLoggedIn, username, setUsername]);
 
 
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} />
-        <Routes userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} />
+        <Routes userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} setUsername={setUsername} />
       </BrowserRouter>
     </div>
   );

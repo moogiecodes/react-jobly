@@ -3,7 +3,7 @@ import axios from 'axios';
 class JoblyApi {
   static async request(endpoint, paramsOrData = {}, verb = "get") {
     paramsOrData._token = localStorage.getItem('_token');
-    console.log("PARAMS DATA ONLY", paramsOrData);
+    // console.log("PARAMS DATA ONLY", paramsOrData);
     console.log("API Call:", endpoint, paramsOrData, verb);
 
     try {
@@ -43,7 +43,7 @@ class JoblyApi {
   // POST TO BACKEND API, get token as response
   // store response in localStorage
   static async login(username, password) {
-    console.log("username", username, "password", password);
+    // console.log("username", username, "password", password);
     let reqbody = {
       username,
       password
@@ -53,20 +53,28 @@ class JoblyApi {
     localStorage.setItem('_token', token);
   }
 
-  // register method needs to be made 
   static async register(username, password, firstname, lastname, email) {
-    console.log("username", username, "password", password, "firstname", firstname, "lastname", lastname, "email", email );
+    // console.log("username", username, "password", password, "firstname", firstname, "lastname", lastname, "email", email );
     let reqbody = {
       username,
       password,
-      first_name : firstname,
-      last_name : lastname,
+      first_name: firstname,
+      last_name: lastname,
       email
     }
     let res = await this.request('users', reqbody, 'post');
     let token = res.token;
     localStorage.setItem('_token', token);
   }
+
+  static async getUser(username) {
+    let reqbody = {
+      "username": username
+    }
+    let res = await this.request(`users/${username}`, reqbody, 'get')
+    return res.user;
+  }
+
 }
 
 export default JoblyApi;
