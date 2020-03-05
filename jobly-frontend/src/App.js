@@ -13,14 +13,15 @@ function App() {
       setUserLoggedIn(true)
     }
     else setUserLoggedIn(false);
-  }, [userLoggedIn, setUserLoggedIn]);
+    console.log("Inside useEffect, userLoggedIn is", userLoggedIn);
+  }, [setUserLoggedIn]);
 
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar userLoggedIn={userLoggedIn} />
-        <Routes userLoggedIn={userLoggedIn} />
+        <Navbar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} />
+        <Routes userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} />
       </BrowserRouter>
     </div>
   );

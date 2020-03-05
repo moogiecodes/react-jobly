@@ -6,7 +6,7 @@ import CompanyCardList from './components/CompanyCardList';
 import JobCardList from './components/JobCardList';
 import LoginForm from './components/LoginForm';
 
-function Routes({ userLoggedIn }) {
+function Routes({ userLoggedIn, setUserLoggedIn }) {
 
   return (
     <Switch>
@@ -25,7 +25,7 @@ function Routes({ userLoggedIn }) {
         {/* <CardList /> */}
       </Route>
       <Route exact path="/login">
-        <LoginForm />
+        <LoginForm setUserLoggedIn={setUserLoggedIn} />
         {/* <LoginForm /> */}
       </Route>
       <Route exact path="/profile">

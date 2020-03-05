@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import JoblyApi from '../JoblyApi';
 import { useHistory } from 'react-router-dom';
 
-function LoginForm() {
+function LoginForm({ setUserLoggedIn }) {
 
   const history = useHistory();
   const [loginOrRegister, setLoginOrRegister] = useState("login")
@@ -30,13 +30,14 @@ function LoginForm() {
     });
   }
 
-console.log(formData)
+
 
  const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (loginOrRegister === "login") {
        await JoblyApi.login(formData.login_username, formData.login_password);
       setFormData(loginData);
+      setUserLoggedIn(true);
       history.push('/jobs');
     }
     else if (loginOrRegister === "register") {
@@ -47,7 +48,7 @@ console.log(formData)
         formData.register_first_name, 
         formData.register_last_name, 
         formData.register_email);
-        console.log(formData);
+       
       setFormData(registerData);
       history.push('/jobs');
     }

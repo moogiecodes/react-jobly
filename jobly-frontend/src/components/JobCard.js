@@ -13,7 +13,7 @@ function JobCard({ title, salary, equity }) {
       <p>{title}</p>
       <p>Salary: {salary}</p>
       <p>Equity: {equity}</p>
-      <button onclick={handleClick}>Apply</button>
+      <button onClick={handleClick}>Apply</button>
     </div>
   );
 }
