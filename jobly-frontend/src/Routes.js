@@ -5,8 +5,9 @@ import CompanyDetails from './components/CompanyDetails';
 import CompanyCardList from './components/CompanyCardList';
 import JobCardList from './components/JobCardList';
 import LoginForm from './components/LoginForm';
+import ProfileForm from './components/ProfileForm';
 
-function Routes({ userLoggedIn, setUserLoggedIn, setUsername }) {
+function Routes({ userLoggedIn, setUserLoggedIn, setUsername, currentUser }) {
 
   return (
     <Switch>
@@ -26,6 +27,7 @@ function Routes({ userLoggedIn, setUserLoggedIn, setUsername }) {
         <LoginForm setUserLoggedIn={setUserLoggedIn} setUsername={setUsername} />
       </Route>
       <Route exact path="/profile">
+        <ProfileForm currentUser={ currentUser } /> 
       </Route>
       <Redirect to='/' />
     </Switch>

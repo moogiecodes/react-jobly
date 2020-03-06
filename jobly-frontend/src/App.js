@@ -26,12 +26,12 @@ function App() {
 
   }, [userLoggedIn, setUserLoggedIn, username, setUsername]);
 
-
+console.log(currentUser);
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} />
-        <Routes userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} setUsername={setUsername} />
+        <Routes userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} setUsername={setUsername} currentUser={currentUser} />
       </BrowserRouter>
     </div>
   );
